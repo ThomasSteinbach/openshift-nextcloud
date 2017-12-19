@@ -12,15 +12,8 @@ fi
 APACHE_RUN_USER=www-data
 APACHE_RUN_GROUP=root
 
-# populate nextcloud
-if [ ! -d /var/www/html/config ]; then
-  apachectl start
-
-  for i in $(seq 1 10); do
-    echo $i
-    sleep 1
-    curl -sf localhost:8080 -o /dev/null && break
-  done
+# post configure nextcloud
+if [ -f /var/www/html/config/config.php ]; then
 
   # configure redis for nextcloud if set
   if [ -z $REDIS_HOST ] && [ -z $REDIS_PORT ]; then
@@ -28,8 +21,6 @@ if [ ! -d /var/www/html/config ]; then
     php occ config:system:set 'redis' 'host' --value "$REDIS_HOST"
     php occ config:system:set 'redis' 'port' --value "$REDIS_PORT"
   fi
-
-  apachectl stop
 fi
 
 exec apache2-foreground
