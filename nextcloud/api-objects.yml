@@ -1,0 +1,507 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/image.dockerRepositoryCheck: 2017-12-19T12:16:06Z
+    creationTimestamp: 2017-12-19T12:16:03Z
+    generation: 2
+    labels:
+      app: openshift-nextcloud
+    name: nextcloud
+    namespace: nextcloud
+    resourceVersion: "18369"
+    selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/nextcloud
+    uid: 61f26a15-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: nextcloud:latest
+      from:
+        kind: DockerImage
+        name: nextcloud:latest
+      generation: 2
+      importPolicy: {}
+      name: latest
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: 172.30.1.1:5000/nextcloud/nextcloud
+    tags:
+    - items:
+      - created: 2017-12-19T12:16:06Z
+        dockerImageReference: nextcloud@sha256:0c1a430657eacdc80713102a856944313bc05a6e77e9432c5785525ba803ca58
+        generation: 2
+        image: sha256:0c1a430657eacdc80713102a856944313bc05a6e77e9432c5785525ba803ca58
+      tag: latest
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2017-12-19T12:16:03Z
+    generation: 1
+    labels:
+      app: openshift-nextcloud
+    name: openshift-nextcloud
+    namespace: nextcloud
+    resourceVersion: "18764"
+    selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/openshift-nextcloud
+    uid: 61f31f5a-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    lookupPolicy:
+      local: false
+  status:
+    dockerImageRepository: 172.30.1.1:5000/nextcloud/openshift-nextcloud
+    tags:
+    - items:
+      - created: 2017-12-19T12:40:56Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+        generation: 1
+        image: sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+      - created: 2017-12-19T12:17:05Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7b1a508b930787fd406caf2a282ebbad425e4c6f9c8ec4d4cbba9e8f90e97fde
+        generation: 1
+        image: sha256:7b1a508b930787fd406caf2a282ebbad425e4c6f9c8ec4d4cbba9e8f90e97fde
+      tag: latest
+- apiVersion: v1
+  data:
+    mysql-database: nextcloud
+    mysql-host: mysql
+    mysql-user: nextcloud
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: 2017-12-16T22:42:15Z
+    name: mysql-config
+    namespace: nextcloud
+    resourceVersion: "11149"
+    selfLink: /api/v1/namespaces/nextcloud/configmaps/mysql-config
+    uid: 5d87f846-e2b2-11e7-bb3d-448500648fa2
+- apiVersion: v1
+  imagePullSecrets:
+  - name: builder-dockercfg-cmjp7
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: 2017-12-16T12:13:00Z
+    name: builder
+    namespace: nextcloud
+    resourceVersion: "1800"
+    selfLink: /api/v1/namespaces/nextcloud/serviceaccounts/builder
+    uid: 75bf59bb-e25a-11e7-9a35-448500648fa2
+  secrets:
+  - name: builder-token-20r67
+  - name: builder-dockercfg-cmjp7
+- apiVersion: v1
+  imagePullSecrets:
+  - name: default-dockercfg-rsj3h
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: 2017-12-16T12:13:00Z
+    name: default
+    namespace: nextcloud
+    resourceVersion: "1799"
+    selfLink: /api/v1/namespaces/nextcloud/serviceaccounts/default
+    uid: 75befd8a-e25a-11e7-9a35-448500648fa2
+  secrets:
+  - name: default-dockercfg-rsj3h
+  - name: default-token-lknvd
+- apiVersion: v1
+  imagePullSecrets:
+  - name: deployer-dockercfg-0thv6
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: 2017-12-16T12:13:00Z
+    name: deployer
+    namespace: nextcloud
+    resourceVersion: "1798"
+    selfLink: /api/v1/namespaces/nextcloud/serviceaccounts/deployer
+    uid: 75c00a2b-e25a-11e7-9a35-448500648fa2
+  secrets:
+  - name: deployer-token-h0q18
+  - name: deployer-dockercfg-0thv6
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2017-12-19T12:16:03Z
+    labels:
+      app: openshift-nextcloud
+    name: openshift-nextcloud
+    namespace: nextcloud
+    resourceVersion: "18748"
+    selfLink: /oapi/v1/namespaces/nextcloud/buildconfigs/openshift-nextcloud
+    uid: 61f45ead-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    failedBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: openshift-nextcloud:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      binary: {}
+      type: Binary
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: nextcloud:latest
+      type: Docker
+    successfulBuildsHistoryLimit: 5
+    triggers:
+    - github:
+        secret: yWV_wcLbBBykaLJsVh4F
+      type: GitHub
+    - generic:
+        secret: _fSBCmKvl7SNMUTm3Ntl
+      type: Generic
+  status:
+    lastVersion: 14
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    creationTimestamp: 2017-12-19T12:16:03Z
+    generation: 3
+    labels:
+      template: mysql-persistent-template
+    name: mysql
+    namespace: nextcloud
+    resourceVersion: "18910"
+    selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/mysql
+    uid: 61f5876b-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    replicas: 1
+    selector:
+      name: mysql
+    strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
+      type: Recreate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          name: mysql
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                key: mysql-user
+                name: mysql-config
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: mysql
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-root-password
+                name: mysql
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: mysql-database
+                name: mysql-config
+          image: centos/mysql-57-centos7@sha256:d03ea99c657f542973d35f55e44824dbea63d70071c16504b42395c28af88905
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            tcpSocket:
+              port: 3306
+            timeoutSeconds: 1
+          name: mysql
+          ports:
+          - containerPort: 3306
+            protocol: TCP
+          readinessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -i
+              - -c
+              - MYSQL_PWD="$MYSQL_PASSWORD" mysql -h 127.0.0.1 -u $MYSQL_USER -D $MYSQL_DATABASE
+                -e 'SELECT 1'
+            failureThreshold: 3
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              memory: 4Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/lib/mysql/data
+            name: mysql-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: mysql-data
+    test: false
+    triggers:
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - mysql
+        from:
+          kind: ImageStreamTag
+          name: mysql:5.7
+          namespace: openshift
+        lastTriggeredImage: centos/mysql-57-centos7@sha256:d03ea99c657f542973d35f55e44824dbea63d70071c16504b42395c28af88905
+      type: ImageChange
+    - type: ConfigChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: 2017-12-19T12:43:42Z
+      lastUpdateTime: 2017-12-19T12:43:42Z
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: 2017-12-19T12:43:22Z
+      lastUpdateTime: 2017-12-19T12:43:43Z
+      message: replication controller "mysql-2" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: Manual
+      message: manual change
+    latestVersion: 2
+    observedGeneration: 3
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2017-12-19T12:16:03Z
+    generation: 6
+    labels:
+      app: openshift-nextcloud
+    name: openshift-nextcloud
+    namespace: nextcloud
+    resourceVersion: "18965"
+    selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/openshift-nextcloud
+    uid: 61f76547-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    replicas: 1
+    selector:
+      app: openshift-nextcloud
+      deploymentconfig: openshift-nextcloud
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: openshift-nextcloud
+          deploymentconfig: openshift-nextcloud
+      spec:
+        containers:
+        - env:
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                key: mysql-database
+                name: mysql-config
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                key: mysql-user
+                name: mysql-config
+          - name: MYSQL_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: mysql-host
+                name: mysql-config
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: database-password
+                name: mysql
+          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+          imagePullPolicy: Always
+          name: openshift-nextcloud
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/www/html
+            name: openshift-nextcloud-var-www-html
+          - mountPath: /appdata
+            name: openshift-nextcloud-appdata
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: openshift-nextcloud-appdata
+        - emptyDir: {}
+          name: openshift-nextcloud-var-www-html
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - openshift-nextcloud
+        from:
+          kind: ImageStreamTag
+          name: openshift-nextcloud:latest
+          namespace: nextcloud
+        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: 2017-12-19T12:17:08Z
+      lastUpdateTime: 2017-12-19T12:17:08Z
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: 2017-12-19T12:43:51Z
+      lastUpdateTime: 2017-12-19T12:43:53Z
+      message: replication controller "openshift-nextcloud-3" successfully rolled
+        out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    details:
+      causes:
+      - type: Manual
+      message: manual change
+    latestVersion: 3
+    observedGeneration: 6
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mysql")].port}
+    creationTimestamp: 2017-12-19T12:16:03Z
+    labels:
+      template: mysql-persistent-template
+    name: mysql
+    namespace: nextcloud
+    resourceVersion: "18336"
+    selfLink: /api/v1/namespaces/nextcloud/services/mysql
+    uid: 61fb78bd-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    clusterIP: 172.30.46.175
+    ports:
+    - name: mysql
+      port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+      name: mysql
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2017-12-19T12:16:03Z
+    labels:
+      app: openshift-nextcloud
+    name: openshift-nextcloud
+    namespace: nextcloud
+    resourceVersion: "18340"
+    selfLink: /api/v1/namespaces/nextcloud/services/openshift-nextcloud
+    uid: 62068a6e-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    clusterIP: 172.30.240.53
+    ports:
+    - name: 8080-tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app: openshift-nextcloud
+      deploymentconfig: openshift-nextcloud
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    creationTimestamp: 2017-12-19T12:16:03Z
+    labels:
+      app: openshift-nextcloud
+    name: openshift-nextcloud
+    namespace: nextcloud
+    resourceVersion: "18347"
+    selfLink: /oapi/v1/namespaces/nextcloud/routes/openshift-nextcloud
+    uid: 62102d50-e4b6-11e7-b86f-507b9de2f48c
+  spec:
+    host: openshift-nextcloud-nextcloud.127.0.0.1.nip.io
+    port:
+      targetPort: 8080-tcp
+    to:
+      kind: Service
+      name: openshift-nextcloud
+      weight: 100
+    wildcardPolicy: None
+  status:
+    ingress:
+    - conditions:
+      - lastTransitionTime: 2017-12-19T12:16:03Z
+        status: "True"
+        type: Admitted
+      host: openshift-nextcloud-nextcloud.127.0.0.1.nip.io
+      routerName: router
+      wildcardPolicy: None
+kind: List
+metadata: {}
+resourceVersion: ""
+selfLink: ""
