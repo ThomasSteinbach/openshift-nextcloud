@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 # setup new run user
 if ! whoami &> /dev/null; then
@@ -12,14 +12,24 @@ fi
 APACHE_RUN_USER=www-data
 APACHE_RUN_GROUP=root
 
-chown -R www-data:root /appdata
-chmod -R ug=rwX,o= /appdata
+# populate nextcloud
+if [ ! -d /var/www/html/config ]; then
+  apachectl start
 
-# configure redis for nextcloud if set
-if [ -z $REDIS_HOST ] && [ -z $REDIS_PORT ]; then
-  php occ config:system:set 'memcache.local' --value '\\OC\\Memcache\\Redis'
-  php occ config:system:set 'redis' 'host' --value "$REDIS_HOST"
-  php occ config:system:set 'redis' 'port' --value "$REDIS_PORT"
+  for i in $(seq 1 10); do
+    echo $i
+    sleep 1
+    curl -sf localhost:8080 -o /dev/null && break
+  done
+
+  # configure redis for nextcloud if set
+  if [ -z $REDIS_HOST ] && [ -z $REDIS_PORT ]; then
+    php occ config:system:set 'memcache.local' --value '\\OC\\Memcache\\Redis'
+    php occ config:system:set 'redis' 'host' --value "$REDIS_HOST"
+    php occ config:system:set 'redis' 'port' --value "$REDIS_PORT"
+  fi
+
+  apachectl stop
 fi
 
 exec apache2-foreground

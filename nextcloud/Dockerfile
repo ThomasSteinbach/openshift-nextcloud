@@ -2,7 +2,7 @@ FROM nextcloud:latest
 MAINTAINER thomas dot steinbach at aikq.de
 
 # set mount path for external data dir
-ENV NEXTCLOUD_DATA_DIR="/appdata"
+ENV NEXTCLOUD_DATA_DIR="/appdata/nextcloud"
 
 # setup custom start script
 COPY start-docker.sh /start-docker.sh
