@@ -6,11 +6,13 @@ ENV NEXTCLOUD_DATA_DIR="/appdata/nextcloud"
 
 # setup custom start script
 COPY start-docker.sh /start-docker.sh
+COPY postConfiguration.sh /postConfiguration.sh
 
 # add non-root user and appropriate permissions
 RUN chown -R www-data:root \
                /etc/passwd \
                /start-docker.sh \
+               /postConfiguration.sh \
                /var/www/html \
                /var/lock/apache2 \
                /var/run/apache2 && \
@@ -18,7 +20,8 @@ RUN chown -R www-data:root \
                  /var/www/html \
                  /var/lock/apache2 \
                  /var/run/apache2 && \
-    chmod +x /start-docker.sh
+    chmod +x /start-docker.sh \
+             /postConfiguration.sh
 
 # change service port to a non priviliged one
 RUN sed -i 's/<VirtualHost \*:80>/<VirtualHost \*:8080>/g' /etc/apache2/sites-enabled/000-default.conf && \

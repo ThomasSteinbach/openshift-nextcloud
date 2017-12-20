@@ -5,16 +5,16 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-      openshift.io/image.dockerRepositoryCheck: 2017-12-19T12:16:06Z
-    creationTimestamp: 2017-12-19T12:16:03Z
+      openshift.io/image.dockerRepositoryCheck: 2017-12-19T12:55:11Z
+    creationTimestamp: 2017-12-19T12:55:07Z
     generation: 2
     labels:
       app: openshift-nextcloud
     name: nextcloud
     namespace: nextcloud
-    resourceVersion: "18369"
+    resourceVersion: "19203"
     selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/nextcloud
-    uid: 61f26a15-e4b6-11e7-b86f-507b9de2f48c
+    uid: d7342f4b-e4bb-11e7-b86f-507b9de2f48c
   spec:
     lookupPolicy:
       local: false
@@ -33,7 +33,7 @@ items:
     dockerImageRepository: 172.30.1.1:5000/nextcloud/nextcloud
     tags:
     - items:
-      - created: 2017-12-19T12:16:06Z
+      - created: 2017-12-19T12:55:11Z
         dockerImageReference: nextcloud@sha256:0c1a430657eacdc80713102a856944313bc05a6e77e9432c5785525ba803ca58
         generation: 2
         image: sha256:0c1a430657eacdc80713102a856944313bc05a6e77e9432c5785525ba803ca58
@@ -43,15 +43,15 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-    creationTimestamp: 2017-12-19T12:16:03Z
+    creationTimestamp: 2017-12-19T12:55:07Z
     generation: 1
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "18764"
+    resourceVersion: "19920"
     selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/openshift-nextcloud
-    uid: 61f31f5a-e4b6-11e7-b86f-507b9de2f48c
+    uid: d734d8cc-e4bb-11e7-b86f-507b9de2f48c
   spec:
     lookupPolicy:
       local: false
@@ -59,14 +59,26 @@ items:
     dockerImageRepository: 172.30.1.1:5000/nextcloud/openshift-nextcloud
     tags:
     - items:
-      - created: 2017-12-19T12:40:56Z
-        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+      - created: 2017-12-19T13:18:28Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
         generation: 1
-        image: sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
-      - created: 2017-12-19T12:17:05Z
-        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7b1a508b930787fd406caf2a282ebbad425e4c6f9c8ec4d4cbba9e8f90e97fde
+        image: sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
+      - created: 2017-12-19T13:10:07Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:12f928d059658a3221e07222cb79a8354d3b226d41803defc8d6506e7e0490eb
         generation: 1
-        image: sha256:7b1a508b930787fd406caf2a282ebbad425e4c6f9c8ec4d4cbba9e8f90e97fde
+        image: sha256:12f928d059658a3221e07222cb79a8354d3b226d41803defc8d6506e7e0490eb
+      - created: 2017-12-19T13:07:29Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:a8c7c64baa40874b9318513ce5a22319b7bbf5eea09a41ce5a9c25d3f9da998a
+        generation: 1
+        image: sha256:a8c7c64baa40874b9318513ce5a22319b7bbf5eea09a41ce5a9c25d3f9da998a
+      - created: 2017-12-19T13:01:17Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:b40d289e57a9c60428fc1ba021e688eee5acb3d6b83600895f2e30b607c781fc
+        generation: 1
+        image: sha256:b40d289e57a9c60428fc1ba021e688eee5acb3d6b83600895f2e30b607c781fc
+      - created: 2017-12-19T12:55:29Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:1e7119d471175065ad3151a0179e0172dd1e1e831533ec36409396ca4a53fee9
+        generation: 1
+        image: sha256:1e7119d471175065ad3151a0179e0172dd1e1e831533ec36409396ca4a53fee9
       tag: latest
 - apiVersion: v1
   data:
@@ -128,14 +140,14 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-    creationTimestamp: 2017-12-19T12:16:03Z
+    creationTimestamp: 2017-12-19T12:55:07Z
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "18748"
+    resourceVersion: "19902"
     selfLink: /oapi/v1/namespaces/nextcloud/buildconfigs/openshift-nextcloud
-    uid: 61f45ead-e4b6-11e7-b86f-507b9de2f48c
+    uid: d738bbaa-e4bb-11e7-b86f-507b9de2f48c
   spec:
     failedBuildsHistoryLimit: 5
     nodeSelector: null
@@ -164,19 +176,19 @@ items:
         secret: _fSBCmKvl7SNMUTm3Ntl
       type: Generic
   status:
-    lastVersion: 14
+    lastVersion: 19
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
-    creationTimestamp: 2017-12-19T12:16:03Z
-    generation: 3
+    creationTimestamp: 2017-12-19T12:55:07Z
+    generation: 2
     labels:
       template: mysql-persistent-template
     name: mysql
     namespace: nextcloud
-    resourceVersion: "18910"
+    resourceVersion: "20162"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/mysql
-    uid: 61f5876b-e4b6-11e7-b86f-507b9de2f48c
+    uid: d73ac69f-e4bb-11e7-b86f-507b9de2f48c
   spec:
     replicas: 1
     selector:
@@ -274,23 +286,28 @@ items:
   status:
     availableReplicas: 1
     conditions:
-    - lastTransitionTime: 2017-12-19T12:43:42Z
-      lastUpdateTime: 2017-12-19T12:43:42Z
-      message: Deployment config has minimum availability.
-      status: "True"
-      type: Available
-    - lastTransitionTime: 2017-12-19T12:43:22Z
-      lastUpdateTime: 2017-12-19T12:43:43Z
-      message: replication controller "mysql-2" successfully rolled out
+    - lastTransitionTime: 2017-12-19T12:55:31Z
+      lastUpdateTime: 2017-12-19T12:55:31Z
+      message: replication controller "mysql-1" successfully rolled out
       reason: NewReplicationControllerAvailable
       status: "True"
       type: Progressing
+    - lastTransitionTime: 2017-12-19T17:34:53Z
+      lastUpdateTime: 2017-12-19T17:34:53Z
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
     details:
       causes:
-      - type: Manual
-      message: manual change
-    latestVersion: 2
-    observedGeneration: 3
+      - imageTrigger:
+          from:
+            kind: ImageStreamTag
+            name: mysql:5.7
+            namespace: openshift
+        type: ImageChange
+      message: image change
+    latestVersion: 1
+    observedGeneration: 2
     readyReplicas: 1
     replicas: 1
     unavailableReplicas: 0
@@ -300,15 +317,15 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-    creationTimestamp: 2017-12-19T12:16:03Z
-    generation: 6
+    creationTimestamp: 2017-12-19T12:55:07Z
+    generation: 12
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "18965"
+    resourceVersion: "20219"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/openshift-nextcloud
-    uid: 61f76547-e4b6-11e7-b86f-507b9de2f48c
+    uid: d73baf21-e4bb-11e7-b86f-507b9de2f48c
   spec:
     replicas: 1
     selector:
@@ -355,7 +372,7 @@ items:
               secretKeyRef:
                 key: database-password
                 name: mysql
-          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
           imagePullPolicy: Always
           name: openshift-nextcloud
           ports:
@@ -390,46 +407,45 @@ items:
           kind: ImageStreamTag
           name: openshift-nextcloud:latest
           namespace: nextcloud
-        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:7d4e9262adc6b77cbfa0ef66a61dc84a9633fefef80b33386d56332829251e75
+        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
       type: ImageChange
   status:
-    availableReplicas: 1
+    availableReplicas: 0
     conditions:
-    - lastTransitionTime: 2017-12-19T12:17:08Z
-      lastUpdateTime: 2017-12-19T12:17:08Z
-      message: Deployment config has minimum availability.
-      status: "True"
-      type: Available
-    - lastTransitionTime: 2017-12-19T12:43:51Z
-      lastUpdateTime: 2017-12-19T12:43:53Z
-      message: replication controller "openshift-nextcloud-3" successfully rolled
+    - lastTransitionTime: 2017-12-19T13:21:52Z
+      lastUpdateTime: 2017-12-19T13:21:54Z
+      message: replication controller "openshift-nextcloud-6" successfully rolled
         out
       reason: NewReplicationControllerAvailable
       status: "True"
       type: Progressing
+    - lastTransitionTime: 2017-12-19T17:35:52Z
+      lastUpdateTime: 2017-12-19T17:35:52Z
+      message: Deployment config does not have minimum availability.
+      status: "False"
+      type: Available
     details:
       causes:
       - type: Manual
       message: manual change
-    latestVersion: 3
-    observedGeneration: 6
-    readyReplicas: 1
+    latestVersion: 6
+    observedGeneration: 12
     replicas: 1
-    unavailableReplicas: 0
+    unavailableReplicas: 1
     updatedReplicas: 1
 - apiVersion: v1
   kind: Service
   metadata:
     annotations:
       template.openshift.io/expose-uri: mysql://{.spec.clusterIP}:{.spec.ports[?(.name=="mysql")].port}
-    creationTimestamp: 2017-12-19T12:16:03Z
+    creationTimestamp: 2017-12-19T12:55:07Z
     labels:
       template: mysql-persistent-template
     name: mysql
     namespace: nextcloud
-    resourceVersion: "18336"
+    resourceVersion: "19169"
     selfLink: /api/v1/namespaces/nextcloud/services/mysql
-    uid: 61fb78bd-e4b6-11e7-b86f-507b9de2f48c
+    uid: d73dac25-e4bb-11e7-b86f-507b9de2f48c
   spec:
     clusterIP: 172.30.46.175
     ports:
@@ -448,14 +464,14 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-    creationTimestamp: 2017-12-19T12:16:03Z
+    creationTimestamp: 2017-12-19T12:55:08Z
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "18340"
+    resourceVersion: "19175"
     selfLink: /api/v1/namespaces/nextcloud/services/openshift-nextcloud
-    uid: 62068a6e-e4b6-11e7-b86f-507b9de2f48c
+    uid: d75399e0-e4bb-11e7-b86f-507b9de2f48c
   spec:
     clusterIP: 172.30.240.53
     ports:
@@ -475,14 +491,14 @@ items:
   metadata:
     annotations:
       openshift.io/host.generated: "true"
-    creationTimestamp: 2017-12-19T12:16:03Z
+    creationTimestamp: 2017-12-19T12:55:08Z
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "18347"
+    resourceVersion: "19180"
     selfLink: /oapi/v1/namespaces/nextcloud/routes/openshift-nextcloud
-    uid: 62102d50-e4b6-11e7-b86f-507b9de2f48c
+    uid: d75bb905-e4bb-11e7-b86f-507b9de2f48c
   spec:
     host: openshift-nextcloud-nextcloud.127.0.0.1.nip.io
     port:
@@ -495,7 +511,7 @@ items:
   status:
     ingress:
     - conditions:
-      - lastTransitionTime: 2017-12-19T12:16:03Z
+      - lastTransitionTime: 2017-12-19T12:55:08Z
         status: "True"
         type: Admitted
       host: openshift-nextcloud-nextcloud.127.0.0.1.nip.io

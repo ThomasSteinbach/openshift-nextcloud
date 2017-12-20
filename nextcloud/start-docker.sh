@@ -12,15 +12,6 @@ fi
 APACHE_RUN_USER=www-data
 APACHE_RUN_GROUP=root
 
-# post configure nextcloud
-if [ -f /var/www/html/config/config.php ]; then
-
-  # configure redis for nextcloud if set
-  if [ -z $REDIS_HOST ] && [ -z $REDIS_PORT ]; then
-    php occ config:system:set 'memcache.local' --value '\\OC\\Memcache\\Redis'
-    php occ config:system:set 'redis' 'host' --value "$REDIS_HOST"
-    php occ config:system:set 'redis' 'port' --value "$REDIS_PORT"
-  fi
-fi
+/postConfiguration.sh &
 
 exec apache2-foreground
