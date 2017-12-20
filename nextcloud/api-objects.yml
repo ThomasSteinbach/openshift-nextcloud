@@ -49,7 +49,7 @@ items:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "19920"
+    resourceVersion: "24003"
     selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/openshift-nextcloud
     uid: d734d8cc-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -59,6 +59,46 @@ items:
     dockerImageRepository: 172.30.1.1:5000/nextcloud/openshift-nextcloud
     tags:
     - items:
+      - created: 2017-12-20T10:12:39Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
+        generation: 1
+        image: sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
+      - created: 2017-12-20T10:09:25Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:c223c7896aff4d8f4bac1c2512160646511d1e165003f0531cd384fe3538a420
+        generation: 1
+        image: sha256:c223c7896aff4d8f4bac1c2512160646511d1e165003f0531cd384fe3538a420
+      - created: 2017-12-20T09:52:24Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:4cb22b1bd4bd790437d4721cd1669bc6680185dc9ea2ac2a44ce983f6299eedb
+        generation: 1
+        image: sha256:4cb22b1bd4bd790437d4721cd1669bc6680185dc9ea2ac2a44ce983f6299eedb
+      - created: 2017-12-20T09:32:17Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:640aaa1ff7e542242fbe2e8e4d85821797c45cd7ff84c92f0f03e3b0a07d68eb
+        generation: 1
+        image: sha256:640aaa1ff7e542242fbe2e8e4d85821797c45cd7ff84c92f0f03e3b0a07d68eb
+      - created: 2017-12-20T08:04:04Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:894f254e8a8d1a09d55f0b58c2e2846cce618608c46876311defbc1dff0d231f
+        generation: 1
+        image: sha256:894f254e8a8d1a09d55f0b58c2e2846cce618608c46876311defbc1dff0d231f
+      - created: 2017-12-20T08:02:12Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:aa94b20639856b26a4c49ffbf514a91a9a83ff9fa9734dc78884ae66b00938fc
+        generation: 1
+        image: sha256:aa94b20639856b26a4c49ffbf514a91a9a83ff9fa9734dc78884ae66b00938fc
+      - created: 2017-12-20T08:00:29Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:c3cd51914358fe9064518f99ef89004d89049b60ab7e7bda8411f39da1c6f3cd
+        generation: 1
+        image: sha256:c3cd51914358fe9064518f99ef89004d89049b60ab7e7bda8411f39da1c6f3cd
+      - created: 2017-12-20T06:43:03Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:a520fd66c32c51d5d240a3e61bde557e293ea9478c718a98b75c4ee18079058a
+        generation: 1
+        image: sha256:a520fd66c32c51d5d240a3e61bde557e293ea9478c718a98b75c4ee18079058a
+      - created: 2017-12-20T06:40:09Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:c056a4d1cb3306852063a7384492e5da04b7101a8a8213e6eca6b605a2f5f557
+        generation: 1
+        image: sha256:c056a4d1cb3306852063a7384492e5da04b7101a8a8213e6eca6b605a2f5f557
+      - created: 2017-12-19T17:40:17Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:4417589c9ab7153c30a370f2cff083c43a7799a9ce2099a6dce249205558871d
+        generation: 1
+        image: sha256:4417589c9ab7153c30a370f2cff083c43a7799a9ce2099a6dce249205558871d
       - created: 2017-12-19T13:18:28Z
         dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
         generation: 1
@@ -81,6 +121,44 @@ items:
         image: sha256:1e7119d471175065ad3151a0179e0172dd1e1e831533ec36409396ca4a53fee9
       tag: latest
 - apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/image.dockerRepositoryCheck: 2017-12-20T19:30:45Z
+    creationTimestamp: 2017-12-20T19:30:41Z
+    generation: 2
+    labels:
+      app: openshift-nextcloud
+    name: redis
+    namespace: nextcloud
+    resourceVersion: "24923"
+    selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/redis
+    uid: 43edeb45-e5bc-11e7-a1a6-507b9de2f48c
+  spec:
+    lookupPolicy:
+      local: false
+    tags:
+    - annotations:
+        openshift.io/imported-from: redis:4
+      from:
+        kind: DockerImage
+        name: redis:4
+      generation: 2
+      importPolicy: {}
+      name: "4"
+      referencePolicy:
+        type: Source
+  status:
+    dockerImageRepository: 172.30.1.1:5000/nextcloud/redis
+    tags:
+    - items:
+      - created: 2017-12-20T19:30:45Z
+        dockerImageReference: redis@sha256:9b1b75fa6364b2ec538a5efdb00c3511adee5b6b2f80d5c64b06c4456ad573f6
+        generation: 2
+        image: sha256:9b1b75fa6364b2ec538a5efdb00c3511adee5b6b2f80d5c64b06c4456ad573f6
+      tag: "4"
+- apiVersion: v1
   data:
     mysql-database: nextcloud
     mysql-host: mysql
@@ -93,6 +171,18 @@ items:
     resourceVersion: "11149"
     selfLink: /api/v1/namespaces/nextcloud/configmaps/mysql-config
     uid: 5d87f846-e2b2-11e7-bb3d-448500648fa2
+- apiVersion: v1
+  data:
+    REDIS_HOST: redis
+    REDIS_PORT: "6379"
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: 2017-12-20T19:32:20Z
+    name: redis-config
+    namespace: nextcloud
+    resourceVersion: "24984"
+    selfLink: /api/v1/namespaces/nextcloud/configmaps/redis-config
+    uid: 7ecfe21c-e5bc-11e7-a1a6-507b9de2f48c
 - apiVersion: v1
   imagePullSecrets:
   - name: builder-dockercfg-cmjp7
@@ -145,7 +235,7 @@ items:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "19902"
+    resourceVersion: "23987"
     selfLink: /oapi/v1/namespaces/nextcloud/buildconfigs/openshift-nextcloud
     uid: d738bbaa-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -176,17 +266,17 @@ items:
         secret: _fSBCmKvl7SNMUTm3Ntl
       type: Generic
   status:
-    lastVersion: 19
+    lastVersion: 34
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     creationTimestamp: 2017-12-19T12:55:07Z
-    generation: 2
+    generation: 6
     labels:
       template: mysql-persistent-template
     name: mysql
     namespace: nextcloud
-    resourceVersion: "20162"
+    resourceVersion: "25338"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/mysql
     uid: d73ac69f-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -286,28 +376,23 @@ items:
   status:
     availableReplicas: 1
     conditions:
-    - lastTransitionTime: 2017-12-19T12:55:31Z
-      lastUpdateTime: 2017-12-19T12:55:31Z
-      message: replication controller "mysql-1" successfully rolled out
+    - lastTransitionTime: 2017-12-20T19:38:01Z
+      lastUpdateTime: 2017-12-20T19:38:23Z
+      message: replication controller "mysql-5" successfully rolled out
       reason: NewReplicationControllerAvailable
       status: "True"
       type: Progressing
-    - lastTransitionTime: 2017-12-19T17:34:53Z
-      lastUpdateTime: 2017-12-19T17:34:53Z
+    - lastTransitionTime: 2017-12-20T20:06:24Z
+      lastUpdateTime: 2017-12-20T20:06:24Z
       message: Deployment config has minimum availability.
       status: "True"
       type: Available
     details:
       causes:
-      - imageTrigger:
-          from:
-            kind: ImageStreamTag
-            name: mysql:5.7
-            namespace: openshift
-        type: ImageChange
-      message: image change
-    latestVersion: 1
-    observedGeneration: 2
+      - type: Manual
+      message: manual change
+    latestVersion: 5
+    observedGeneration: 6
     readyReplicas: 1
     replicas: 1
     unavailableReplicas: 0
@@ -318,12 +403,12 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: 2017-12-19T12:55:07Z
-    generation: 12
+    generation: 40
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "20219"
+    resourceVersion: "25346"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/openshift-nextcloud
     uid: d73baf21-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -372,7 +457,17 @@ items:
               secretKeyRef:
                 key: database-password
                 name: mysql
-          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
+          - name: REDIS_HOST
+            valueFrom:
+              configMapKeyRef:
+                key: REDIS_HOST
+                name: redis-config
+          - name: REDIS_PORT
+            valueFrom:
+              configMapKeyRef:
+                key: REDIS_PORT
+                name: redis-config
+          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
           imagePullPolicy: Always
           name: openshift-nextcloud
           ports:
@@ -407,31 +502,128 @@ items:
           kind: ImageStreamTag
           name: openshift-nextcloud:latest
           namespace: nextcloud
-        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:281e0be34126cd4dc794a4dd67a314e1ab3943026b342019c737a48fe77d51b6
+        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
       type: ImageChange
   status:
-    availableReplicas: 0
+    availableReplicas: 1
     conditions:
-    - lastTransitionTime: 2017-12-19T13:21:52Z
-      lastUpdateTime: 2017-12-19T13:21:54Z
-      message: replication controller "openshift-nextcloud-6" successfully rolled
+    - lastTransitionTime: 2017-12-20T19:38:44Z
+      lastUpdateTime: 2017-12-20T19:38:46Z
+      message: replication controller "openshift-nextcloud-22" successfully rolled
         out
       reason: NewReplicationControllerAvailable
       status: "True"
       type: Progressing
-    - lastTransitionTime: 2017-12-19T17:35:52Z
-      lastUpdateTime: 2017-12-19T17:35:52Z
-      message: Deployment config does not have minimum availability.
-      status: "False"
+    - lastTransitionTime: 2017-12-20T20:06:24Z
+      lastUpdateTime: 2017-12-20T20:06:24Z
+      message: Deployment config has minimum availability.
+      status: "True"
       type: Available
     details:
       causes:
       - type: Manual
       message: manual change
-    latestVersion: 6
-    observedGeneration: 12
+    latestVersion: 22
+    observedGeneration: 40
+    readyReplicas: 1
     replicas: 1
-    unavailableReplicas: 1
+    unavailableReplicas: 0
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2017-12-20T19:30:41Z
+    generation: 4
+    labels:
+      app: openshift-nextcloud
+    name: redis
+    namespace: nextcloud
+    resourceVersion: "25333"
+    selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/redis
+    uid: 43eec331-e5bc-11e7-a1a6-507b9de2f48c
+  spec:
+    replicas: 1
+    selector:
+      app: openshift-nextcloud
+      deploymentconfig: redis
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftNewApp
+        creationTimestamp: null
+        labels:
+          app: openshift-nextcloud
+          deploymentconfig: redis
+      spec:
+        containers:
+        - image: redis@sha256:9b1b75fa6364b2ec538a5efdb00c3511adee5b6b2f80d5c64b06c4456ad573f6
+          imagePullPolicy: IfNotPresent
+          name: redis
+          ports:
+          - containerPort: 6379
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data
+            name: redis-data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - emptyDir: {}
+          name: redis-data
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - redis
+        from:
+          kind: ImageStreamTag
+          name: redis:4
+          namespace: nextcloud
+        lastTriggeredImage: redis@sha256:9b1b75fa6364b2ec538a5efdb00c3511adee5b6b2f80d5c64b06c4456ad573f6
+      type: ImageChange
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: 2017-12-20T19:35:59Z
+      lastUpdateTime: 2017-12-20T19:36:01Z
+      message: replication controller "redis-2" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
+    - lastTransitionTime: 2017-12-20T20:06:24Z
+      lastUpdateTime: 2017-12-20T20:06:24Z
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    details:
+      causes:
+      - type: Manual
+      message: manual change
+    latestVersion: 2
+    observedGeneration: 4
+    readyReplicas: 1
+    replicas: 1
+    unavailableReplicas: 0
     updatedReplicas: 1
 - apiVersion: v1
   kind: Service
@@ -482,6 +674,33 @@ items:
     selector:
       app: openshift-nextcloud
       deploymentconfig: openshift-nextcloud
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftNewApp
+    creationTimestamp: 2017-12-20T19:30:41Z
+    labels:
+      app: openshift-nextcloud
+    name: redis
+    namespace: nextcloud
+    resourceVersion: "24919"
+    selfLink: /api/v1/namespaces/nextcloud/services/redis
+    uid: 43f046e1-e5bc-11e7-a1a6-507b9de2f48c
+  spec:
+    clusterIP: 172.30.60.120
+    ports:
+    - name: 6379-tcp
+      port: 6379
+      protocol: TCP
+      targetPort: 6379
+    selector:
+      app: openshift-nextcloud
+      deploymentconfig: redis
     sessionAffinity: None
     type: ClusterIP
   status:
