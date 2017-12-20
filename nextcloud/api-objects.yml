@@ -49,7 +49,7 @@ items:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "24003"
+    resourceVersion: "27453"
     selfLink: /oapi/v1/namespaces/nextcloud/imagestreams/openshift-nextcloud
     uid: d734d8cc-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -59,6 +59,22 @@ items:
     dockerImageRepository: 172.30.1.1:5000/nextcloud/openshift-nextcloud
     tags:
     - items:
+      - created: 2017-12-20T22:07:11Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:777759881b589fc763e557714a21d05e528f9f8cd7a694f36ddd13fef8ea4975
+        generation: 1
+        image: sha256:777759881b589fc763e557714a21d05e528f9f8cd7a694f36ddd13fef8ea4975
+      - created: 2017-12-20T22:00:05Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:f2d908e57a631ea478b25f9c653f5da9d61987289d21b87678374b0ede22e1fc
+        generation: 1
+        image: sha256:f2d908e57a631ea478b25f9c653f5da9d61987289d21b87678374b0ede22e1fc
+      - created: 2017-12-20T21:51:21Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:874c3b9e92c7192558494c4f49fd239fedb143bd2e3698c810098c3438623e89
+        generation: 1
+        image: sha256:874c3b9e92c7192558494c4f49fd239fedb143bd2e3698c810098c3438623e89
+      - created: 2017-12-20T20:41:32Z
+        dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:46692f76e2254c065f2c77b864f3c105ef8d1d78f2da81b821288556eaaeda1e
+        generation: 1
+        image: sha256:46692f76e2254c065f2c77b864f3c105ef8d1d78f2da81b821288556eaaeda1e
       - created: 2017-12-20T10:12:39Z
         dockerImageReference: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
         generation: 1
@@ -235,7 +251,7 @@ items:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "23987"
+    resourceVersion: "27428"
     selfLink: /oapi/v1/namespaces/nextcloud/buildconfigs/openshift-nextcloud
     uid: d738bbaa-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -266,17 +282,17 @@ items:
         secret: _fSBCmKvl7SNMUTm3Ntl
       type: Generic
   status:
-    lastVersion: 34
+    lastVersion: 39
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
     creationTimestamp: 2017-12-19T12:55:07Z
-    generation: 6
+    generation: 7
     labels:
       template: mysql-persistent-template
     name: mysql
     namespace: nextcloud
-    resourceVersion: "25338"
+    resourceVersion: "26943"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/mysql
     uid: d73ac69f-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -376,23 +392,23 @@ items:
   status:
     availableReplicas: 1
     conditions:
-    - lastTransitionTime: 2017-12-20T19:38:01Z
-      lastUpdateTime: 2017-12-20T19:38:23Z
-      message: replication controller "mysql-5" successfully rolled out
-      reason: NewReplicationControllerAvailable
-      status: "True"
-      type: Progressing
-    - lastTransitionTime: 2017-12-20T20:06:24Z
-      lastUpdateTime: 2017-12-20T20:06:24Z
+    - lastTransitionTime: 2017-12-20T21:43:49Z
+      lastUpdateTime: 2017-12-20T21:43:49Z
       message: Deployment config has minimum availability.
       status: "True"
       type: Available
+    - lastTransitionTime: 2017-12-20T21:43:29Z
+      lastUpdateTime: 2017-12-20T21:43:51Z
+      message: replication controller "mysql-6" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
     details:
       causes:
       - type: Manual
       message: manual change
-    latestVersion: 5
-    observedGeneration: 6
+    latestVersion: 6
+    observedGeneration: 7
     readyReplicas: 1
     replicas: 1
     unavailableReplicas: 0
@@ -403,12 +419,12 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: 2017-12-19T12:55:07Z
-    generation: 40
+    generation: 50
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
     namespace: nextcloud
-    resourceVersion: "25346"
+    resourceVersion: "27517"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/openshift-nextcloud
     uid: d73baf21-e4bb-11e7-b86f-507b9de2f48c
   spec:
@@ -467,7 +483,7 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: redis-config
-          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
+          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:777759881b589fc763e557714a21d05e528f9f8cd7a694f36ddd13fef8ea4975
           imagePullPolicy: Always
           name: openshift-nextcloud
           ports:
@@ -502,29 +518,34 @@ items:
           kind: ImageStreamTag
           name: openshift-nextcloud:latest
           namespace: nextcloud
-        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:eaafa5a5b34093e737f110e0cff1d41a02c3f400d6c31edf835fe48b6655de65
+        lastTriggeredImage: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:777759881b589fc763e557714a21d05e528f9f8cd7a694f36ddd13fef8ea4975
       type: ImageChange
   status:
     availableReplicas: 1
     conditions:
-    - lastTransitionTime: 2017-12-20T19:38:44Z
-      lastUpdateTime: 2017-12-20T19:38:46Z
-      message: replication controller "openshift-nextcloud-22" successfully rolled
+    - lastTransitionTime: 2017-12-20T20:47:14Z
+      lastUpdateTime: 2017-12-20T20:47:14Z
+      message: Deployment config has minimum availability.
+      status: "True"
+      type: Available
+    - lastTransitionTime: 2017-12-20T22:07:18Z
+      lastUpdateTime: 2017-12-20T22:07:20Z
+      message: replication controller "openshift-nextcloud-28" successfully rolled
         out
       reason: NewReplicationControllerAvailable
       status: "True"
       type: Progressing
-    - lastTransitionTime: 2017-12-20T20:06:24Z
-      lastUpdateTime: 2017-12-20T20:06:24Z
-      message: Deployment config has minimum availability.
-      status: "True"
-      type: Available
     details:
       causes:
-      - type: Manual
-      message: manual change
-    latestVersion: 22
-    observedGeneration: 40
+      - imageTrigger:
+          from:
+            kind: ImageStreamTag
+            name: openshift-nextcloud:latest
+            namespace: nextcloud
+        type: ImageChange
+      message: image change
+    latestVersion: 28
+    observedGeneration: 50
     readyReplicas: 1
     replicas: 1
     unavailableReplicas: 0
@@ -535,12 +556,12 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: 2017-12-20T19:30:41Z
-    generation: 4
+    generation: 5
     labels:
       app: openshift-nextcloud
     name: redis
     namespace: nextcloud
-    resourceVersion: "25333"
+    resourceVersion: "26819"
     selfLink: /oapi/v1/namespaces/nextcloud/deploymentconfigs/redis
     uid: 43eec331-e5bc-11e7-a1a6-507b9de2f48c
   spec:
@@ -604,23 +625,23 @@ items:
   status:
     availableReplicas: 1
     conditions:
-    - lastTransitionTime: 2017-12-20T19:35:59Z
-      lastUpdateTime: 2017-12-20T19:36:01Z
-      message: replication controller "redis-2" successfully rolled out
-      reason: NewReplicationControllerAvailable
-      status: "True"
-      type: Progressing
-    - lastTransitionTime: 2017-12-20T20:06:24Z
-      lastUpdateTime: 2017-12-20T20:06:24Z
+    - lastTransitionTime: 2017-12-20T20:32:10Z
+      lastUpdateTime: 2017-12-20T20:32:10Z
       message: Deployment config has minimum availability.
       status: "True"
       type: Available
+    - lastTransitionTime: 2017-12-20T21:35:57Z
+      lastUpdateTime: 2017-12-20T21:35:59Z
+      message: replication controller "redis-3" successfully rolled out
+      reason: NewReplicationControllerAvailable
+      status: "True"
+      type: Progressing
     details:
       causes:
       - type: Manual
       message: manual change
-    latestVersion: 2
-    observedGeneration: 4
+    latestVersion: 3
+    observedGeneration: 5
     readyReplicas: 1
     replicas: 1
     unavailableReplicas: 0
