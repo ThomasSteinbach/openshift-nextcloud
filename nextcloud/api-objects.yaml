@@ -6,6 +6,7 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
+    generation: 2
     labels:
       app: nextcloud
     name: nextcloud
@@ -29,6 +30,7 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
+    generation: 2
     labels:
       app: nextcloud
     name: openshift-nextcloud
@@ -39,7 +41,7 @@ items:
     - annotations: null
       from:
         kind: DockerImage
-        name: 172.30.1.1:5000/nextcloud/openshift-nextcloud:latest
+        name: 172.30.1.1:5000/mycloud/openshift-nextcloud:latest
       generation: 2
       importPolicy: {}
       name: latest
@@ -51,6 +53,7 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
+    generation: 2
     labels:
       app: nextcloud
     name: redis
@@ -253,6 +256,10 @@ items:
       app: nextcloud
       deploymentconfig: nextcloud
     strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
       type: Recreate
     template:
       metadata:
@@ -295,7 +302,7 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: redis-config
-          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:6565637d5e17613bfa46dc984b31e932ed72d7ac434d2e7b59ac29506ac56b4a
+          image: 172.30.1.1:5000/mycloud/openshift-nextcloud@sha256:562cdb2ae717b1e81d95ee7dd5385c2d92c1925ca8a698c6ee7886b017699773
           imagePullPolicy: Always
           name: nextcloud
           ports:
@@ -329,7 +336,7 @@ items:
         from:
           kind: ImageStreamTag
           name: openshift-nextcloud:latest
-          namespace: nextcloud
+          namespace: mycloud
       type: ImageChange
 - apiVersion: v1
   kind: DeploymentConfig
@@ -347,6 +354,10 @@ items:
       app: nextcloud
       deploymentconfig: redis
     strategy:
+      activeDeadlineSeconds: 21600
+      recreateParams:
+        timeoutSeconds: 600
+      resources: {}
       type: Recreate
     template:
       metadata:
@@ -388,7 +399,7 @@ items:
         from:
           kind: ImageStreamTag
           name: redis:4
-          namespace: nextcloud
+          namespace: mycloud
       type: ImageChange
 - apiVersion: v1
   kind: Service
