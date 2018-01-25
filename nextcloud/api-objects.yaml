@@ -5,9 +5,7 @@ items:
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-      openshift.io/image.dockerRepositoryCheck: 2018-01-24T22:31:08Z
     creationTimestamp: null
-    generation: 2
     labels:
       app: openshift-nextcloud
     name: nextcloud
@@ -25,15 +23,12 @@ items:
       name: latest
       referencePolicy:
         type: Source
-  status:
-    dockerImageRepository: ''
 - apiVersion: v1
   kind: ImageStream
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
-    generation: 1
     labels:
       app: openshift-nextcloud
     name: openshift-nextcloud
@@ -45,21 +40,17 @@ items:
       from:
         kind: DockerImage
         name: 172.30.1.1:5000/nextcloud/openshift-nextcloud:latest
-      generation: null
+      generation: 2
       importPolicy: {}
       name: latest
       referencePolicy:
-        type: ''
-  status:
-    dockerImageRepository: ''
+        type: Source
 - apiVersion: v1
   kind: ImageStream
   metadata:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
-      openshift.io/image.dockerRepositoryCheck: 2018-01-24T22:31:07Z
     creationTimestamp: null
-    generation: 2
     labels:
       app: openshift-nextcloud
     name: redis
@@ -77,8 +68,6 @@ items:
       name: '4'
       referencePolicy:
         type: Source
-  status:
-    dockerImageRepository: ''
 - apiVersion: v1
   data:
     mysql-database: nextcloud
@@ -147,8 +136,6 @@ items:
     - generic:
         secret: _fSBCmKvl7SNMUTm3Ntl
       type: Generic
-  status:
-    lastVersion: 0
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
@@ -250,13 +237,6 @@ items:
           namespace: openshift
       type: ImageChange
     - type: ConfigChange
-  status:
-    availableReplicas: 0
-    latestVersion: 0
-    observedGeneration: 0
-    replicas: 0
-    unavailableReplicas: 0
-    updatedReplicas: 0
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
@@ -323,7 +303,7 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: redis-config
-          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:8e2603b957d9d49d59f51936a9105a971b89c0b388f061aad1879954ae185497
+          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:6565637d5e17613bfa46dc984b31e932ed72d7ac434d2e7b59ac29506ac56b4a
           imagePullPolicy: Always
           name: openshift-nextcloud
           ports:
@@ -359,13 +339,6 @@ items:
           name: openshift-nextcloud:latest
           namespace: nextcloud
       type: ImageChange
-  status:
-    availableReplicas: 0
-    latestVersion: 0
-    observedGeneration: 0
-    replicas: 0
-    unavailableReplicas: 0
-    updatedReplicas: 0
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
@@ -401,7 +374,7 @@ items:
           deploymentconfig: redis
       spec:
         containers:
-        - image: redis@sha256:9b1b75fa6364b2ec538a5efdb00c3511adee5b6b2f80d5c64b06c4456ad573f6
+        - image: redis@sha256:0d9e5a4a3072948e1460a510bb07b2636d5c160ee84edb98daac8e779756f08d
           imagePullPolicy: IfNotPresent
           name: redis
           ports:
@@ -433,13 +406,6 @@ items:
           name: redis:4
           namespace: nextcloud
       type: ImageChange
-  status:
-    availableReplicas: 0
-    latestVersion: 0
-    observedGeneration: 0
-    replicas: 0
-    unavailableReplicas: 0
-    updatedReplicas: 0
 - apiVersion: v1
   kind: Service
   metadata:
@@ -459,8 +425,6 @@ items:
       name: mysql
     sessionAffinity: None
     type: ClusterIP
-  status:
-    loadBalancer: {}
 - apiVersion: v1
   kind: Service
   metadata:
@@ -481,8 +445,6 @@ items:
       deploymentconfig: openshift-nextcloud
     sessionAffinity: None
     type: ClusterIP
-  status:
-    loadBalancer: {}
 - apiVersion: v1
   kind: Service
   metadata:
@@ -503,8 +465,6 @@ items:
       deploymentconfig: redis
     sessionAffinity: None
     type: ClusterIP
-  status:
-    loadBalancer: {}
 - apiVersion: v1
   kind: Route
   metadata:
@@ -523,14 +483,5 @@ items:
       name: openshift-nextcloud
       weight: 100
     wildcardPolicy: None
-  status:
-    ingress:
-    - conditions:
-      - lastTransitionTime: 2018-01-24T22:31:06Z
-        status: 'True'
-        type: Admitted
-      host: openshift-nextcloud-nextcloud.127.0.0.1.nip.io
-      routerName: router
-      wildcardPolicy: None
 kind: List
 metadata: {}
