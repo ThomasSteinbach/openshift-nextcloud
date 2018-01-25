@@ -7,7 +7,7 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
+      app: nextcloud
     name: nextcloud
   spec:
     lookupPolicy:
@@ -30,7 +30,7 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
+      app: nextcloud
     name: openshift-nextcloud
   spec:
     lookupPolicy:
@@ -52,7 +52,7 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
+      app: nextcloud
     name: redis
   spec:
     lookupPolicy:
@@ -107,8 +107,8 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
-    name: openshift-nextcloud
+      app: nextcloud
+    name: nextcloud
   spec:
     failedBuildsHistoryLimit: 5
     nodeSelector: null
@@ -245,31 +245,23 @@ items:
     creationTimestamp: null
     generation: 1
     labels:
-      app: openshift-nextcloud
-    name: openshift-nextcloud
+      app: nextcloud
+    name: nextcloud
   spec:
     replicas: 1
     selector:
-      app: openshift-nextcloud
-      deploymentconfig: openshift-nextcloud
+      app: nextcloud
+      deploymentconfig: nextcloud
     strategy:
-      activeDeadlineSeconds: 21600
-      resources: {}
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
-        maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
-      type: Rolling
+      type: Recreate
     template:
       metadata:
         annotations:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: openshift-nextcloud
-          deploymentconfig: openshift-nextcloud
+          app: nextcloud
+          deploymentconfig: nextcloud
       spec:
         containers:
         - env:
@@ -305,7 +297,7 @@ items:
                 name: redis-config
           image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:6565637d5e17613bfa46dc984b31e932ed72d7ac434d2e7b59ac29506ac56b4a
           imagePullPolicy: Always
-          name: openshift-nextcloud
+          name: nextcloud
           ports:
           - containerPort: 8080
             protocol: TCP
@@ -314,9 +306,9 @@ items:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /var/www/html
-            name: openshift-nextcloud-var-www-html
+            name: nextcloud-var-www-html
           - mountPath: /appdata
-            name: openshift-nextcloud-appdata
+            name: nextcloud-appdata
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
@@ -324,16 +316,16 @@ items:
         terminationGracePeriodSeconds: 30
         volumes:
         - emptyDir: {}
-          name: openshift-nextcloud-appdata
+          name: nextcloud-appdata
         - emptyDir: {}
-          name: openshift-nextcloud-var-www-html
+          name: nextcloud-var-www-html
     test: false
     triggers:
     - type: ConfigChange
     - imageChangeParams:
         automatic: true
         containerNames:
-        - openshift-nextcloud
+        - nextcloud
         from:
           kind: ImageStreamTag
           name: openshift-nextcloud:latest
@@ -347,30 +339,22 @@ items:
     creationTimestamp: null
     generation: 1
     labels:
-      app: openshift-nextcloud
+      app: nextcloud
     name: redis
   spec:
     replicas: 1
     selector:
-      app: openshift-nextcloud
+      app: nextcloud
       deploymentconfig: redis
     strategy:
-      activeDeadlineSeconds: 21600
-      resources: {}
-      rollingParams:
-        intervalSeconds: 1
-        maxSurge: 25%
-        maxUnavailable: 25%
-        timeoutSeconds: 600
-        updatePeriodSeconds: 1
-      type: Rolling
+      type: Recreate
     template:
       metadata:
         annotations:
           openshift.io/generated-by: OpenShiftNewApp
         creationTimestamp: null
         labels:
-          app: openshift-nextcloud
+          app: nextcloud
           deploymentconfig: redis
       spec:
         containers:
@@ -432,8 +416,8 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
-    name: openshift-nextcloud
+      app: nextcloud
+    name: nextcloud
   spec:
     ports:
     - name: 8080-tcp
@@ -441,8 +425,8 @@ items:
       protocol: TCP
       targetPort: 8080
     selector:
-      app: openshift-nextcloud
-      deploymentconfig: openshift-nextcloud
+      app: nextcloud
+      deploymentconfig: nextcloud
     sessionAffinity: None
     type: ClusterIP
 - apiVersion: v1
@@ -452,7 +436,7 @@ items:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
+      app: nextcloud
     name: redis
   spec:
     ports:
@@ -461,7 +445,7 @@ items:
       protocol: TCP
       targetPort: 6379
     selector:
-      app: openshift-nextcloud
+      app: nextcloud
       deploymentconfig: redis
     sessionAffinity: None
     type: ClusterIP
@@ -472,15 +456,15 @@ items:
       openshift.io/host.generated: 'true'
     creationTimestamp: null
     labels:
-      app: openshift-nextcloud
-    name: openshift-nextcloud
+      app: nextcloud
+    name: nextcloud
   spec:
-    host: openshift-nextcloud-nextcloud.127.0.0.1.nip.io
+    host: nextcloud.127.0.0.1.nip.io
     port:
       targetPort: 8080-tcp
     to:
       kind: Service
-      name: openshift-nextcloud
+      name: nextcloud
       weight: 100
     wildcardPolicy: None
 kind: List
