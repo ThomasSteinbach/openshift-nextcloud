@@ -5,7 +5,7 @@ metadata:
   name: mysql-secret
 objects:
 - apiVersion: v1
-  data:
+  stringData:
     database-password: ${DATABASE_PASSWORD}
     database-root-password: ${DATABASE_ROOT_PASSWORD}
   kind: Secret
