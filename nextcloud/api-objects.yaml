@@ -41,7 +41,7 @@ items:
     - annotations: null
       from:
         kind: DockerImage
-        name: 172.30.1.1:5000/nextcloud/openshift-nextcloud:latest
+        name: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud:latest
       generation: 2
       importPolicy: {}
       name: latest
