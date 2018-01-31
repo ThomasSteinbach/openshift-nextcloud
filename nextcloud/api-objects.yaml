@@ -78,6 +78,7 @@ items:
     mysql-user: nextcloud
   kind: ConfigMap
   metadata:
+    annotations: {}
     creationTimestamp: null
     name: mysql-config
 - apiVersion: v1
@@ -86,21 +87,25 @@ items:
     REDIS_PORT: '6379'
   kind: ConfigMap
   metadata:
+    annotations: {}
     creationTimestamp: null
     name: redis-config
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
+    annotations: {}
     creationTimestamp: null
     name: builder
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
+    annotations: {}
     creationTimestamp: null
     name: default
 - apiVersion: v1
   kind: ServiceAccount
   metadata:
+    annotations: {}
     creationTimestamp: null
     name: deployer
 - apiVersion: v1
@@ -142,6 +147,7 @@ items:
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
+    annotations: {}
     creationTimestamp: null
     generation: 1
     labels:
@@ -302,7 +308,7 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: redis-config
-          image: 172.30.1.1:5000/nextcloud/openshift-nextcloud@sha256:562cdb2ae717b1e81d95ee7dd5385c2d92c1925ca8a698c6ee7886b017699773
+          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:83ead5a1e7f2f7c3e2ff46eed9facdf488c97c79df10fc0dfc32389783e4378d
           imagePullPolicy: Always
           name: nextcloud
           ports:
@@ -336,7 +342,7 @@ items:
         from:
           kind: ImageStreamTag
           name: openshift-nextcloud:latest
-          namespace: nextcloud
+          namespace: OC_PROJECT_NAME
       type: ImageChange
 - apiVersion: v1
   kind: DeploymentConfig
@@ -399,7 +405,7 @@ items:
         from:
           kind: ImageStreamTag
           name: redis:4
-          namespace: nextcloud
+          namespace: OC_PROJECT_NAME
       type: ImageChange
 - apiVersion: v1
   kind: Service
