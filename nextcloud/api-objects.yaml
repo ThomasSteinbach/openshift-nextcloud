@@ -130,6 +130,7 @@ items:
     source:
       binary: {}
       type: Binary
+      contextDir: dockercontext
     strategy:
       dockerStrategy:
         from:
