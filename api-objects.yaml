@@ -6,7 +6,6 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
-    generation: 2
     labels:
       app: nextcloud
     name: nextcloud
@@ -19,7 +18,6 @@ items:
       from:
         kind: DockerImage
         name: nextcloud:latest
-      generation: 2
       importPolicy: {}
       name: latest
       referencePolicy:
@@ -30,7 +28,6 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
-    generation: 2
     labels:
       app: nextcloud
     name: openshift-nextcloud
@@ -42,7 +39,6 @@ items:
       from:
         kind: DockerImage
         name: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud:latest
-      generation: 2
       importPolicy: {}
       name: latest
       referencePolicy:
@@ -53,7 +49,6 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
-    generation: 2
     labels:
       app: nextcloud
     name: redis
@@ -66,7 +61,6 @@ items:
       from:
         kind: DockerImage
         name: redis:4
-      generation: 2
       importPolicy: {}
       name: '4'
       referencePolicy:
@@ -129,8 +123,8 @@ items:
     runPolicy: Serial
     source:
       binary: {}
-      type: Binary
       contextDir: dockercontext
+      type: Binary
     strategy:
       dockerStrategy:
         from:
@@ -150,7 +144,6 @@ items:
   metadata:
     annotations: {}
     creationTimestamp: null
-    generation: 1
     labels:
       template: mysql-persistent-template
     name: mysql
@@ -192,7 +185,7 @@ items:
               configMapKeyRef:
                 key: mysql-database
                 name: mysql-config
-          image: centos/mysql-57-centos7@sha256:5cc8f3c8b3b0b9bc1e44fbe0256415881203f48bffc0fb1bc7f3a45fb023460e
+          image: centos/mysql-57-centos7@sha256:0889e0694fc88ab18b0ab704059d25f8617a4c9204041b14d982a3ecee32be7b
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -253,7 +246,6 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
-    generation: 1
     labels:
       app: nextcloud
     name: nextcloud
@@ -309,7 +301,7 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: redis-config
-          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:83ead5a1e7f2f7c3e2ff46eed9facdf488c97c79df10fc0dfc32389783e4378d
+          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:095d010c2f21f50e13a2c3198e6c6c459452c93bf93478890ae5f35cb33d0795
           imagePullPolicy: Always
           name: nextcloud
           ports:
@@ -351,7 +343,6 @@ items:
     annotations:
       openshift.io/generated-by: OpenShiftNewApp
     creationTimestamp: null
-    generation: 1
     labels:
       app: nextcloud
     name: redis
@@ -376,7 +367,7 @@ items:
           deploymentconfig: redis
       spec:
         containers:
-        - image: redis@sha256:0d9e5a4a3072948e1460a510bb07b2636d5c160ee84edb98daac8e779756f08d
+        - image: redis@sha256:e992a63e634b8ef3084ba6cacf25acd4bd19f2ac0b6d80f129764a9015daf595
           imagePullPolicy: IfNotPresent
           name: redis
           ports:
@@ -477,7 +468,7 @@ items:
       app: nextcloud
     name: nextcloud
   spec:
-    host: nextcloud.127.0.0.1.nip.io
+    host: OC_PROJECT_NAME.127.0.0.1.nip.io
     port:
       targetPort: 8080-tcp
     to:
