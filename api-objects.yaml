@@ -361,19 +361,19 @@ items:
           terminationMessagePolicy: File
           volumeMounts:
           - mountPath: /var/www/html
-            name: nextcloud-var-www-html
+            name: var-www-html
           - mountPath: /appdata
-            name: nextcloud-appdata
+            name: appdata
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext: {}
         terminationGracePeriodSeconds: 30
         volumes:
-        - name: nextcloud-var-www-html
+        - name: var-www-html
           persistentVolumeClaim:
             claimName: var-www-html
-        - name: nextcloud-appdata
+        - name: appdata
           persistentVolumeClaim:
             claimName: appdata
     test: false
