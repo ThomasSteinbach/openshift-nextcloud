@@ -185,7 +185,7 @@ items:
               configMapKeyRef:
                 key: mysql-database
                 name: mysql-config
-          image: centos/mysql-57-centos7@sha256:0889e0694fc88ab18b0ab704059d25f8617a4c9204041b14d982a3ecee32be7b
+          image: centos/mysql-57-centos7@sha256:4cb434e93fd4c31296c8c84e9301b5bf9c6f2c7c9693520a902b065295632e23
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -301,7 +301,7 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: redis-config
-          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:095d010c2f21f50e13a2c3198e6c6c459452c93bf93478890ae5f35cb33d0795
+          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:8662e0cfa8b7daad2ecf58687986be435c5c69b63cb18f6eff69962ea7aa26c8
           imagePullPolicy: Always
           name: nextcloud
           ports:
@@ -367,7 +367,7 @@ items:
           deploymentconfig: redis
       spec:
         containers:
-        - image: redis@sha256:e992a63e634b8ef3084ba6cacf25acd4bd19f2ac0b6d80f129764a9015daf595
+        - image: redis@sha256:edb0f060fdeb089d2e05b7a69b0fb91418eb7d5cfb7b268b2e2f24a31807ae65
           imagePullPolicy: IfNotPresent
           name: redis
           ports:
