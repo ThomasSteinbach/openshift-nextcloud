@@ -85,6 +85,54 @@ items:
     creationTimestamp: null
     name: redis-config
 - apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations: {}
+    creationTimestamp: null
+    name: appdata
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 100Gi
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations: {}
+    creationTimestamp: null
+    name: mysql-data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 20Gi
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations: {}
+    creationTimestamp: null
+    name: redis-data
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 5Gi
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations: {}
+    creationTimestamp: null
+    name: var-www-html
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+- apiVersion: v1
   kind: ServiceAccount
   metadata:
     annotations: {}
@@ -226,8 +274,9 @@ items:
         securityContext: {}
         terminationGracePeriodSeconds: 30
         volumes:
-        - emptyDir: {}
-          name: mysql-data
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-data
     test: false
     triggers:
     - imageChangeParams:
@@ -321,10 +370,12 @@ items:
         securityContext: {}
         terminationGracePeriodSeconds: 30
         volumes:
-        - emptyDir: {}
-          name: nextcloud-appdata
-        - emptyDir: {}
-          name: nextcloud-var-www-html
+        - name: nextcloud-var-www-html
+          persistentVolumeClaim:
+            claimName: var-www-html
+        - name: nextcloud-appdata
+          persistentVolumeClaim:
+            claimName: appdata
     test: false
     triggers:
     - type: ConfigChange
@@ -385,8 +436,9 @@ items:
         securityContext: {}
         terminationGracePeriodSeconds: 30
         volumes:
-        - emptyDir: {}
-          name: redis-data
+        - name: redis-data
+          persistentVolumeClaim:
+            claimName: redis-data
     test: false
     triggers:
     - type: ConfigChange
