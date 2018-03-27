@@ -1,4 +1,4 @@
-oc new-project nextcloud
+oc new-project nextcloud || oc project nextcloud
 sudo oc login -u system:admin
 sudo oc adm policy add-scc-to-user anyuid -z default -n nextcloud
 oc new-app -f secret-template.yaml
