@@ -174,7 +174,8 @@ items:
     resources: {}
     runPolicy: Serial
     source:
-      binary: {}
+      git:
+        uri: "https://gitlab.com/thomassteinbach/openshift-nextcloud.git"
       contextDir: dockercontext
       type: Binary
     strategy:
