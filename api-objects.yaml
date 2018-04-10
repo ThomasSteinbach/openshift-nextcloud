@@ -177,7 +177,6 @@ items:
       git:
         uri: "https://gitlab.com/thomassteinbach/openshift-nextcloud.git"
       contextDir: dockercontext
-      type: Binary
     strategy:
       dockerStrategy:
         from:
