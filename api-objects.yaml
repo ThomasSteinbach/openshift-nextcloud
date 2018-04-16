@@ -90,6 +90,7 @@ items:
     mysql-host: mysql
     REDIS_HOST: redis
     REDIS_PORT: '6379'
+    nextcloud-admin-user: admin
   kind: ConfigMap
   metadata:
     annotations: {}
@@ -350,6 +351,16 @@ items:
               configMapKeyRef:
                 key: REDIS_PORT
                 name: nextcloud-config
+          - name: NEXTCLOUD_ADMIN_USER
+            valueFrom:
+              configMapKeyRef:
+                key: nextcloud-admin-user
+                name: nextcloud-config
+          - name: NEXTCLOUD_ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: nextcloud-admin-password
+                name: nextcloud-secrets
           image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:983111f7d5caefc7f8e77917a8c562207858b9d1abae8e71c780d273d89eae24
           imagePullPolicy: Always
           livenessProbe:
