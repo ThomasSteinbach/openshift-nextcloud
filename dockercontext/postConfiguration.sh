@@ -5,7 +5,7 @@ set -ex
 # wait for nextcloud become installed
 while true; do
   if $(php occ config:system:get installed &> /dev/null); then
-    if [ "$(php occ config:system:get installed)" == 'true' ]; then
+    if [ "$(php occ config:system:get installed)" == 'true' ] || [ "$(php occ config:system:get installed)" = *"require upgrade"* ]; then
       break;
     fi
   fi
