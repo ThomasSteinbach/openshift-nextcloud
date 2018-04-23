@@ -3,6 +3,8 @@ items:
 - apiVersion: v1
   kind: ImageStream
   metadata:
+    annotations: {}
+    creationTimestamp: null
     labels:
       app: nextcloud
     name: mysql
@@ -16,7 +18,7 @@ items:
         kind: DockerImage
         name: mysql:5.7
       importPolicy: {}
-      name: "latest"
+      name: latest
       referencePolicy:
         type: Source
 - apiVersion: v1
@@ -86,10 +88,12 @@ items:
         type: Source
 - apiVersion: v1
   data:
-    mysql-database: nextcloud
-    mysql-host: mysql
+    NEXTCLOUD_DATA_DIR: /appdata
+    NEXTCLOUD_PUBLIC_HOSTNAME: nextcloud.xarif.de
     REDIS_HOST: redis
     REDIS_PORT: '6379'
+    mysql-database: owncloud
+    mysql-host: mysql
     nextcloud-admin-user: admin
   kind: ConfigMap
   metadata:
@@ -114,27 +118,27 @@ items:
   metadata:
     annotations: {}
     creationTimestamp: null
-    name: var-lib-mysql
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 20Gi
-    volumeName: nextcloud-var-lib-mysql
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    annotations: {}
-    creationTimestamp: null
     name: redis-data
   spec:
     accessModes:
     - ReadWriteOnce
     resources:
       requests:
-        storage: 5Gi
+        storage: 2Gi
     volumeName: nextcloud-redis-data
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations: {}
+    creationTimestamp: null
+    name: var-lib-mysql
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 5Gi
+    volumeName: nextcloud-var-lib-mysql
 - apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
@@ -186,9 +190,10 @@ items:
     resources: {}
     runPolicy: Serial
     source:
-      git:
-        uri: "https://gitlab.com/thomassteinbach/openshift-nextcloud.git"
       contextDir: dockercontext
+      git:
+        uri: https://gitlab.com/thomassteinbach/openshift-nextcloud.git
+      type: Git
     strategy:
       dockerStrategy:
         from:
@@ -237,7 +242,7 @@ items:
               configMapKeyRef:
                 key: mysql-database
                 name: nextcloud-config
-          image: mysql:5.7
+          image: mysql@sha256:3c993a4fe9bf642fa160289187f9b377c758cb75cc9e63c61a977fdc40d96b65
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -361,7 +366,17 @@ items:
               secretKeyRef:
                 key: nextcloud-admin-password
                 name: nextcloud-secrets
-          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:983111f7d5caefc7f8e77917a8c562207858b9d1abae8e71c780d273d89eae24
+          - name: NEXTCLOUD_DATA_DIR
+            valueFrom:
+              configMapKeyRef:
+                key: NEXTCLOUD_DATA_DIR
+                name: nextcloud-config
+          - name: NEXTCLOUD_PUBLIC_HOSTNAME
+            valueFrom:
+              configMapKeyRef:
+                key: NEXTCLOUD_PUBLIC_HOSTNAME
+                name: nextcloud-config
+          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:b36a83cb5d58aecb4a8ee7ba2849905dcd5b00a0f6f35b517a04a14ceec9bf94
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 5
@@ -449,7 +464,7 @@ items:
           deploymentconfig: redis
       spec:
         containers:
-        - image: redis@sha256:edb0f060fdeb089d2e05b7a69b0fb91418eb7d5cfb7b268b2e2f24a31807ae65
+        - image: redis@sha256:1415c3ce635e1bb7e9d672c476f70fa9ddbe720f01d419babcdd2235103f7a85
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -566,16 +581,16 @@ items:
 - apiVersion: v1
   kind: Route
   metadata:
-    annotations:
-      openshift.io/host.generated: 'true'
     creationTimestamp: null
     labels:
       app: nextcloud
     name: nextcloud
   spec:
-    host: OC_PROJECT_NAME.127.0.0.1.nip.io
+    host: OC_PROJECT_NAME.xarif.de
     port:
       targetPort: 8080-tcp
+    tls:
+      termination: edge
     to:
       kind: Service
       name: nextcloud
