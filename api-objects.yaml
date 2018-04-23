@@ -88,8 +88,9 @@ items:
         type: Source
 - apiVersion: v1
   data:
+    MYSQL_USER: root
     NEXTCLOUD_DATA_DIR: /appdata
-    NEXTCLOUD_PUBLIC_HOSTNAME: nextcloud.xarif.de
+    NEXTCLOUD_PUBLIC_HOSTNAME: owncloud.xarif.de
     REDIS_HOST: redis
     REDIS_PORT: '6379'
     mysql-database: owncloud
@@ -334,8 +335,6 @@ items:
               configMapKeyRef:
                 key: mysql-database
                 name: nextcloud-config
-          - name: MYSQL_USER
-            value: root
           - name: MYSQL_HOST
             valueFrom:
               configMapKeyRef:
@@ -375,6 +374,11 @@ items:
             valueFrom:
               configMapKeyRef:
                 key: NEXTCLOUD_PUBLIC_HOSTNAME
+                name: nextcloud-config
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                key: MYSQL_USER
                 name: nextcloud-config
           image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:b36a83cb5d58aecb4a8ee7ba2849905dcd5b00a0f6f35b517a04a14ceec9bf94
           imagePullPolicy: Always
@@ -586,7 +590,7 @@ items:
       app: nextcloud
     name: nextcloud
   spec:
-    host: OC_PROJECT_NAME.xarif.de
+    host: owncloud.xarif.de
     port:
       targetPort: 8080-tcp
     tls:
