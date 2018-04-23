@@ -21,7 +21,7 @@ if [ ! -z $REDIS_HOST ] && [ ! -z $REDIS_PORT ]; then
   php occ config:system:set trusted_domains 0 --value "$NEXTCLOUD_PUBLIC_HOSTNAME"
   php occ config:system:set trusted_domains 1 --value "$NEXTCLOUD_SERVICE_HOST"
   php occ config:system:set trusted_domains 2 --value "$(hostname -I | xargs)"
-  php occ config:system:set 'overwrite.cli.url' --value "http://$NEXTCLOUD_PUBLIC_HOSTNAME
+  php occ config:system:set 'overwrite.cli.url' --value "http://$NEXTCLOUD_PUBLIC_HOSTNAME"
   php occ config:system:set 'overwriteprotocol' --value 'https'
 
   # must be the last configuration line as Nextcloud will override it
