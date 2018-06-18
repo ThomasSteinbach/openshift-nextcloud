@@ -243,7 +243,7 @@ items:
               configMapKeyRef:
                 key: mysql-database
                 name: nextcloud-config
-          image: mysql@sha256:3c993a4fe9bf642fa160289187f9b377c758cb75cc9e63c61a977fdc40d96b65
+          image: mysql@sha256:81679f23e0ece3e50a7300050191272e5afbf5b66be9b60d2ee0e8b575b152e2
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
@@ -380,7 +380,7 @@ items:
               configMapKeyRef:
                 key: MYSQL_USER
                 name: nextcloud-config
-          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:b36a83cb5d58aecb4a8ee7ba2849905dcd5b00a0f6f35b517a04a14ceec9bf94
+          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:0e1ee6703df3d0b7e416e18ff09da728f31bba5714264bd18268dd4f1aa71173
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 5
@@ -468,7 +468,7 @@ items:
           deploymentconfig: redis
       spec:
         containers:
-        - image: redis@sha256:1415c3ce635e1bb7e9d672c476f70fa9ddbe720f01d419babcdd2235103f7a85
+        - image: redis@sha256:fc13b47aca9b5b53f625efe91bcd5cc44c637e80a81e5b223d5a98a6eac7ceb2
           imagePullPolicy: IfNotPresent
           livenessProbe:
             exec:
@@ -585,6 +585,7 @@ items:
 - apiVersion: v1
   kind: Route
   metadata:
+    annotations: {}
     creationTimestamp: null
     labels:
       app: nextcloud
