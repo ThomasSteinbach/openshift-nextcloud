@@ -35,7 +35,8 @@ fi
 # https://nextcloud.com/blog/setup-cron-or-systemd-timers-for-the-nextcloud-preview-generator/
 
 while [ true ]; do
-  # wait 7 days
-  sleep 604800
+  # wait until 01:00 AM UTC (3 AM in Germany)
+  # https://stackoverflow.com/questions/645992/bash-sleep-until-a-specific-time-date
+  sleep $((($(date -f - +%s- <<<$'01:00 tomorrow\nnow')0)%86400))
   sudo -u www-data /usr/local/bin/php -d memory_limit=2048M -f /var/www/html/occ preview:pre-generate
 done
