@@ -29,3 +29,13 @@ if [ ! -z $REDIS_HOST ] && [ ! -z $REDIS_PORT ]; then
   # after another setting
   php occ config:system:set 'memcache.local' --value '\OC\Memcache\Redis'
 fi
+
+# Preview Generator
+# https://apps.nextcloud.com/apps/previewgenerator
+# https://nextcloud.com/blog/setup-cron-or-systemd-timers-for-the-nextcloud-preview-generator/
+
+while [ true ]; do
+  # wait 7 days
+  sleep 604800
+  sudo -u www-data /usr/local/bin/php -d memory_limit=2048M -f /var/www/html/occ preview:pre-generate
+done
