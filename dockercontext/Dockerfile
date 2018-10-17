@@ -26,4 +26,4 @@ RUN sed -i 's/<VirtualHost \*:80>/<VirtualHost \*:8080>/g' /etc/apache2/sites-en
 VOLUME /appdata
 EXPOSE 8080
 
-CMD ["/start-docker.sh"]
+ENTRYPOINT ["/start-docker.sh"]

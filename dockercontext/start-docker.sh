@@ -2,4 +2,4 @@
 
 sudo -u www-data --preserve-env /postConfiguration.sh &
 
-exec apache2-foreground
+exec /entrypoint.sh apache2-foreground
