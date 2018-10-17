@@ -380,7 +380,7 @@ items:
               configMapKeyRef:
                 key: MYSQL_USER
                 name: nextcloud-config
-          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:b095bfc15fe874104657eb6d5067e7c3f7a1d7494082e510d795379a1332b868
+          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:26db5d30af4ab5ea571c07d51b5015cec3b4588d4b059b4e3be322a6fc68e931
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 5
