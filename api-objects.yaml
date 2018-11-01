@@ -616,7 +616,7 @@ items:
   kind: Route
   metadata:
     annotations:
-      haproxy.router.openshift.io/timeout: 1m
+      haproxy.router.openshift.io/timeout: 12h
     creationTimestamp: null
     labels:
       app: nextcloud
