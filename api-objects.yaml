@@ -35,10 +35,10 @@ items:
       local: false
     tags:
     - annotations:
-        openshift.io/imported-from: nextcloud:latest
+        openshift.io/imported-from: thomass/nextcloud:latest
       from:
         kind: DockerImage
-        name: nextcloud:latest
+        name: thomass/nextcloud:latest
       importPolicy: {}
       name: latest
       referencePolicy:
@@ -46,20 +46,21 @@ items:
 - apiVersion: v1
   kind: ImageStream
   metadata:
-    annotations:
-      openshift.io/generated-by: OpenShiftNewApp
+    annotations: {}
     creationTimestamp: null
     labels:
       app: nextcloud
-    name: openshift-nextcloud
+    name: nextcloud-nginx
   spec:
     lookupPolicy:
       local: false
     tags:
-    - annotations: null
+    - annotations:
+        openshift.io/generated-by: OpenShiftWebConsole
+        openshift.io/imported-from: thomass/nextcloud-nginx:latest
       from:
         kind: DockerImage
-        name: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud:latest
+        name: thomass/nextcloud-nginx:latest
       importPolicy: {}
       name: latest
       referencePolicy:
@@ -148,7 +149,7 @@ items:
     name: var-www-html
   spec:
     accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
     resources:
       requests:
         storage: 1Gi
@@ -171,44 +172,6 @@ items:
     annotations: {}
     creationTimestamp: null
     name: deployer
-- apiVersion: v1
-  kind: BuildConfig
-  metadata:
-    annotations:
-      openshift.io/generated-by: OpenShiftNewApp
-    creationTimestamp: null
-    labels:
-      app: nextcloud
-    name: nextcloud
-  spec:
-    failedBuildsHistoryLimit: 5
-    nodeSelector: null
-    output:
-      to:
-        kind: ImageStreamTag
-        name: openshift-nextcloud:latest
-    postCommit: {}
-    resources: {}
-    runPolicy: Serial
-    source:
-      contextDir: dockercontext
-      git:
-        uri: https://gitlab.com/thomassteinbach/openshift-nextcloud.git
-      type: Git
-    strategy:
-      dockerStrategy:
-        from:
-          kind: ImageStreamTag
-          name: nextcloud:latest
-      type: Docker
-    successfulBuildsHistoryLimit: 5
-    triggers:
-    - github:
-        secret: yWV_wcLbBBykaLJsVh4F
-      type: GitHub
-    - generic:
-        secret: _fSBCmKvl7SNMUTm3Ntl
-      type: Generic
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
@@ -380,32 +343,12 @@ items:
               configMapKeyRef:
                 key: MYSQL_USER
                 name: nextcloud-config
-          image: 172.30.1.1:5000/OC_PROJECT_NAME/openshift-nextcloud@sha256:26db5d30af4ab5ea571c07d51b5015cec3b4588d4b059b4e3be322a6fc68e931
+          image: thomass/nextcloud@sha256:eefbcb0a0a040f72fb54f0576fe08e3de9a384c9d0e152b48d8d2bcd3bc8d466
           imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 5
-            httpGet:
-              path: /status.php
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 120
-            periodSeconds: 20
-            successThreshold: 1
-            timeoutSeconds: 5
           name: nextcloud
           ports:
-          - containerPort: 8080
+          - containerPort: 9000
             protocol: TCP
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: /status.php
-              port: 8080
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 20
-            successThreshold: 1
-            timeoutSeconds: 5
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
@@ -435,7 +378,75 @@ items:
         - nextcloud
         from:
           kind: ImageStreamTag
-          name: openshift-nextcloud:latest
+          name: nextcloud:latest
+          namespace: OC_PROJECT_NAME
+      type: ImageChange
+- apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftWebConsole
+    creationTimestamp: null
+    labels:
+      app: nextcloud
+    name: nextcloud-nginx
+  spec:
+    replicas: 1
+    selector:
+      app: nextcloud
+      deploymentconfig: nextcloud-nginx
+    strategy:
+      activeDeadlineSeconds: 21600
+      resources: {}
+      rollingParams:
+        intervalSeconds: 1
+        maxSurge: 25%
+        maxUnavailable: 25%
+        timeoutSeconds: 600
+        updatePeriodSeconds: 1
+      type: Rolling
+    template:
+      metadata:
+        annotations:
+          openshift.io/generated-by: OpenShiftWebConsole
+        creationTimestamp: null
+        labels:
+          app: nextcloud
+          deploymentconfig: nextcloud-nginx
+      spec:
+        containers:
+        - image: thomass/nextcloud-nginx@sha256:150763bae55d1bed52aff65664b8851c6addea4a5b54bf9fa1c68587e965211e
+          imagePullPolicy: Always
+          name: nextcloud-nginx
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /var/www/html
+            name: var-www-html
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: var-www-html
+          persistentVolumeClaim:
+            claimName: var-www-html
+    test: false
+    triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - nextcloud-nginx
+        from:
+          kind: ImageStreamTag
+          name: nextcloud-nginx:latest
           namespace: OC_PROJECT_NAME
       type: ImageChange
 - apiVersion: v1
@@ -553,13 +564,32 @@ items:
     name: nextcloud
   spec:
     ports:
+    - name: 9000-tcp
+      port: 9000
+      protocol: TCP
+      targetPort: 9000
+    selector:
+      app: nextcloud
+      deploymentconfig: nextcloud
+    sessionAffinity: None
+    type: ClusterIP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      openshift.io/generated-by: OpenShiftWebConsole
+    creationTimestamp: null
+    labels:
+      app: nextcloud
+    name: nextcloud-nginx
+  spec:
+    ports:
     - name: 8080-tcp
       port: 8080
       protocol: TCP
       targetPort: 8080
     selector:
-      app: nextcloud
-      deploymentconfig: nextcloud
+      deploymentconfig: nextcloud-nginx
     sessionAffinity: None
     type: ClusterIP
 - apiVersion: v1
@@ -585,7 +615,6 @@ items:
 - apiVersion: v1
   kind: Route
   metadata:
-    annotations: {}
     creationTimestamp: null
     labels:
       app: nextcloud
@@ -599,7 +628,7 @@ items:
       termination: edge
     to:
       kind: Service
-      name: nextcloud
+      name: nextcloud-nginx
       weight: 100
     wildcardPolicy: None
 kind: List
